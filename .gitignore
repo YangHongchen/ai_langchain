@@ -1,0 +1,59 @@
+# ---------- 密钥 / 本地环境 ----------
+# 真实的环境变量文件里有 API Key，绝对不能提交；要提交的是 .env.example 模板。
+# 先写 .env.* 再单独放行 .env.example，收下所有本地变体（.env.local / .env.dev ...）。
+.env
+.env.*
+!.env.example
+
+# ---------- Python 虚拟环境 ----------
+.venv/
+venv/
+env/
+ENV/
+
+# ---------- Python 编译产物与缓存 ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ---------- 打包 / 构建产物 ----------
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ---------- 测试与静态检查缓存 ----------
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---------- 本项目运行期生成的数据 ----------
+# Chroma 的向量库落盘目录，是 022 跑出来的产物，删了重跑就有，不进版本库。
+chroma_db/
+
+# ---------- 本地模型权重 ----------
+# bge-small-zh-v1.5 的 ONNX 文件有 91 MB —— 它是「依赖」不是「源码」，
+# 提交上去会拖垮仓库（GitHub 单文件超 50 MB 就会告警）。
+# 换机器时按 common/utils.py 里那句报错提示，从 ModelScope 重新下载即可。
+models/
+
+# ---------- IDE ----------
+.idea/
+*.iml
+.vscode/
+
+# ---------- 操作系统 ----------
+.DS_Store
+Thumbs.db
+
+# ---------- 日志 ----------
+*.log
+
+# 说明：下面这些是【故意不忽略】的，别手贱加进来
+#   assets/    各 demo 的示例文档，体积小（最大 220 KB），是运行必需数据
+#   .trae/     本项目的代码规范（skill），团队成员共享
+#   .env.example  环境变量模板，没有真实密钥
+.trae/
